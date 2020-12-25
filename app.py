@@ -18,7 +18,7 @@ def index():
     link = form.link.data
     if form.validate_on_submit():
         video = Video(link)
-        if video.vadlidate_link() == True:
+        if video.vadlidate_link() :
             video.download()
             flash('Video downloaded successfully:👍')
         else:
