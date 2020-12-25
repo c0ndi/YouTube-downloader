@@ -1,7 +1,7 @@
 from flask import Flask, render_template,redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from pytube import YouTube
+from video import Video
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mykey'
@@ -17,8 +17,13 @@ def index():
     form = DownloadForm()
     link = form.link.data
     if form.validate_on_submit():
-        YouTube(link).streams.first().download()
-        flash('Pobrano')
+        video = Video(link)
+        if video.vadlidate_link() == True:
+            video.download()
+            flash('Video downloaded successfully:👍')
+        else:
+            flash('Error occurred while downloading video. Maybe link is invalid🤔')
+
         return redirect(url_for('index'))
 
     return render_template('index.html', form = form)
