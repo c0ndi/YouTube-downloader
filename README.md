@@ -8,8 +8,8 @@
 3. index.html
  -Głowny plik HTML
  -Szkielet strony
+ 
 4. style.css
-
  -Głowne style 
  -'Styluje' index.html
   
